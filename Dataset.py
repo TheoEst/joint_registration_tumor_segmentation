@@ -75,15 +75,15 @@ def load_datasets(path):
     return nifti
 
 
-def load_existing_dataset(path):
-    files_train = np.loadtxt(path + 'frontiers_' + 'train.txt', dtype=str)
-    files_val = np.loadtxt(path + 'frontiers_' + 'val.txt', dtype=str)
-    files_test = np.loadtxt(path + 'frontiers_' + 'test.txt', dtype=str)
+def load_existing_dataset(path, cohort):
+    files_train = np.loadtxt(path + cohort + '_train.txt', dtype=str)
+    files_val = np.loadtxt(path + cohort + '_val.txt', dtype=str)
+    files_test = np.loadtxt(path + cohort + '_test.txt', dtype=str)
 
     return files_train, files_val, files_test
 
 
-def create_dataset(files, path):
+def create_dataset(files, path, cohort):
     (files_train,
      files_validation) = model_selection.train_test_split(files,
                                                           test_size=0.3,
@@ -94,9 +94,9 @@ def create_dataset(files, path):
                                                           test_size=0.3,
                                                           random_state=42)
 
-    np.savetxt(path + 'frontiers_' + 'train.txt', files_train, fmt='%s')
-    np.savetxt(path + 'frontiers_' + 'val.txt', files_validation, fmt='%s')
-    np.savetxt(path + 'frontiers_' + 'test.txt', files_test, fmt='%s')
+    np.savetxt(path + cohort + '_train.txt', files_train, fmt='%s')
+    np.savetxt(path + cohort + '_val.txt', files_validation, fmt='%s')
+    np.savetxt(path + cohort + '_test.txt', files_test, fmt='%s')
 
     return files_train, files_validation, files_test
 

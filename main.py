@@ -127,6 +127,7 @@ def main(args):
     else:
         brats_path = data_path + 'BRATS/numpy/'
     oasis_path = data_path + 'oasis/'
+    dataset_path = main_path + 'frontiers_code/datset/'
 
     # logs some path info and arguments
     logger.info('save_path ' + save_path)
@@ -154,18 +155,16 @@ def main(args):
     # Datasets
     if not args.inference_path:
         if args.create_new_split:
-            brats_files = Dataset.load_datasets(brats_path)
-            oasis_files = Dataset.load_datasets(oasis_path)
+            brats_files = Dataset.load_datasets(brats_path, 'brats')
+            oasis_files = Dataset.load_datasets(oasis_path, 'oasis')
 
             brats_files_train, brats_files_validation, brats_files_test = Dataset.create_dataset(brats_files,
-                                                                                                 brats_path)
-            if not args.only_brats:
-                oasis_files_train, oasis_files_validation, oasis_files_test = \
-                    Dataset.create_dataset(oasis_files, oasis_path)
+                                                                                                 dataset_path, 'brats')
+            oasis_files_train, oasis_files_validation, oasis_files_test = \
+                    Dataset.create_dataset(oasis_files, dataset_path, 'oasis')
         else:
-            brats_files_train, brats_files_validation, brats_files_test = Dataset.load_existing_dataset(brats_path)
-            if not args.only_brats:
-                oasis_files_train, oasis_files_validation, oasis_files_test = Dataset.load_existing_dataset(oasis_path)
+            brats_files_train, brats_files_validation, brats_files_test = Dataset.load_existing_dataset(dataset_path, 'brats')
+            oasis_files_train, oasis_files_validation, oasis_files_test = Dataset.load_existing_dataset(dataset_path, 'oasis')
 
     if args.only_t1:
         global n_input_channels

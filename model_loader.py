@@ -13,7 +13,7 @@ from frontiers_code import diffeomorphicTransformer as Transformer
 
 
 def handwritten_vnet(input_shape, final_activation_name, n_output_channels, filter_width_normal_conv=5,
-                     first_conv_n_filters=16, input_layer=None, activity_l2reg_coef=1e-3,
+                     first_conv_n_filters=16, input_layer=None,
                      last_layer_zero_initialization=False, override_decoder_input_channels=None,
                      get_only_decoder=False, deform_regularisation=0):
     w = filter_width_normal_conv
@@ -203,14 +203,14 @@ def handwritten_vnet(input_shape, final_activation_name, n_output_channels, filt
 
 def conc_input_handwritten_vnet(input_shape_per_image, final_activation_name, n_output_channels,
                                 filter_width_normal_conv=5,
-                                first_conv_n_filters=16, input_layer=None, activity_l2reg_coef=1e-3,
+                                first_conv_n_filters=16, input_layer=None,
                                 last_layer_zero_initialization=False, override_decoder_input_channels=None,
                                 get_only_decoder=False, deform_regularisation=0):
     new_input_shape = input_shape_per_image[:-
                                             1] + (input_shape_per_image[-1] * 2,)
     registration_vnet, _, _ = handwritten_vnet(new_input_shape, 'sigmoid', 3,
                                                filter_width_normal_conv,
-                                               first_conv_n_filters, input_layer, activity_l2reg_coef,
+                                               first_conv_n_filters, input_layer,
                                                last_layer_zero_initialization, override_decoder_input_channels,
                                                get_only_decoder, deform_regularisation)
 
@@ -232,7 +232,6 @@ def conc_input_handwritten_vnet(input_shape_per_image, final_activation_name, n_
 
 def get_registration_segmenter_vnet(input_shape, final_activation_name, n_output_channels, filter_width_normal_conv=5,
                                     first_conv_n_filters=16, with_target_segmenter=False, with_source_segmenter=False,
-                                    registration_activity_l2reg_coef=1e-3,
                                     source_target_merge_operation='substraction', with_loss_trick=False,
                                     deform_regularisation=0):
     source = Input(input_shape, name='source_image')
@@ -305,7 +304,6 @@ def get_registration_segmenter_vnet(input_shape, final_activation_name, n_output
     # Registration model: same input and encoder as segmenter model, outputs 3 channels mask with new decoder
     _, _, vnet_decoder_registration = handwritten_vnet(input_shape, 'sigmoid', 3, filter_width_normal_conv,
                                                        first_conv_n_filters,
-                                                       activity_l2reg_coef=registration_activity_l2reg_coef,
                                                        last_layer_zero_initialization=False,
                                                        override_decoder_input_channels=override_decoder_input_channels,
                                                        get_only_decoder=True,

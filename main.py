@@ -23,7 +23,7 @@ from frontiers_code import model_loader
 from frontiers_code import Dataset
 from frontiers_code import ImageTensorboard
 from frontiers_code import losses
-from frontiers_code import log
+from frontiers_code.tools import log
 
 main_path = os.path.abspath(__file__)
 n = main_path.find('Python')
@@ -138,16 +138,17 @@ def main(args):
 
     args.model_path = main_path + 'save/models/'
 
-    if args.only_brats:
-        args.crop_size = (144, 208, 144)
-    elif args.cohort == 'oasis':
+    if args.cohort == 'oasis':
         args.crop_size = (160, 176, 208)
+    else:
+        args.crop_size = (144, 208, 144)
 
     # DataGen Parameters
     params = {'data_path': data_path, 'dim': args.crop_size, 'batch_size': args.batch_size, 'shuffle': True,
               'translation': args.translation, 'cohort': args.cohort,
-              'mono_gpu': args.nb_gpu <= 1, 'nb_train_files': args.nb_train_files,
+              'mono_gpu': args.nb_gpu <= 1,
               'concatenate_inputs': args.concatenated_input_arch}
+
     logger.info('DataGen parameters: {}'.format(params))
 
     # Datasets

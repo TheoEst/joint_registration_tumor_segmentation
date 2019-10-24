@@ -3,11 +3,11 @@
 
 To train a model use the main.py function. 
 The most important arguments are : 
-    - --segmentation-only to train only on the segmentation task
-    - --registration-only to train only on the registration task
-    - --with-loss-trick to add the seg^0 (Equation 4 of the article)
-    - --only-t1 to train only with t1 modality (by default 4 modality are excepted)
-    - --source-target--merge-operation ['subtraction', 'addition', 'concatenation'] to choose the mergin operation used
+  - --segmentation-only to train only on the segmentation task
+  - --registration-only to train only on the registration task
+  - --with-loss-trick to add the seg^0 (Equation 4 of the article)
+  - --only-t1 to train only with t1 modality (by default 4 modality are excepted)
+  - --source-target--merge-operation ['subtraction', 'addition', 'concatenation'] to choose the mergin operation used
     
 To train the proposed method, the commands line is :
 

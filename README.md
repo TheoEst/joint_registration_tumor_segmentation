@@ -13,6 +13,9 @@ To train the proposed method, the commands line is :
 
 python -m frontiers_brain.main --only-t1 --session-name seg_reg_SubMerge_8channels_1.0ratio_0.002lr --epochs 180 --batch-size 2 --lr 2e-3 --nb-gpu 1 --only-brats --source-target-merge-operation subtraction --n-channels-first-layer 8 --ratio-weights-registration-over-segmentation 1.0 -deform-regularisation 1e-10
 
+
+
+
 To do the inference, use the inference.py function. 
 The most important arguments are :
   - --get-segmentation to save the predicted segmentation

@@ -10,8 +10,7 @@ import SimpleITK as sitk
 import keras.models as models
 
 # My package
-from frontiers_brain import blocks
-from frontiers_brain.diffeomorphicTransformer import BuildRegistrationMap, diffeomorphicTransformer3D
+from frontiers_brain.diffeomorphicTransformer import BuildRegistrationMap, diffeomorphicTransformer3D, DefReg
 from frontiers_brain.main import zero_loss, mean_squared_error_with_zero
 
 
@@ -69,7 +68,7 @@ def load_model_v2(model_path):
                       'diffeomorphicTransformer3D': diffeomorphicTransformer3D,
                       'zero_loss': zero_loss,
                       'mean_squared_error_with_zero': mean_squared_error_with_zero, 
-                      'DefReg': blocks.DefReg
+                      'DefReg': DefReg
                       }
 
     model = models.load_model(model_path, custom_objects=custom_objects)

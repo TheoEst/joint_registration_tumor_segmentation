@@ -14,11 +14,11 @@ import keras.models as models
 from tqdm import tqdm
 
 # My package
-from frontiers_code import Dataset
-from frontiers_code.tools import log
-from frontiers_code.tools import numpy2nifti
-from frontiers_code.tools.utils import load_model_v2
-from frontiers_code.diffeomorphicTransformer import diffeomorphicTransformer3D
+from joint_registration_tumor_segmentation import Dataset
+from joint_registration_tumor_segmentation.tools import log
+from joint_registration_tumor_segmentation.tools import numpy2nifti
+from joint_registration_tumor_segmentation.tools.utils import load_model_v2
+from joint_registration_tumor_segmentation.diffeomorphicTransformer import diffeomorphicTransformer3D
 import tensorflow as tf
 
 save_numpy_predictions = False
@@ -187,7 +187,7 @@ def main(args):
         to_categorical = False
         mask_channel = 29
         n_output_channels = 29
-        n_input_channels = 1  
+        n_input_channels = 1
         original_images = [Dataset.load_mgh(args.data_folder_path + file) for file in inference_files_ids]
         names_images = inference_files_ids
 

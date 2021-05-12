@@ -19,11 +19,11 @@ import math
 import numpy as np
 import time
 # My package
-from frontiers_code import model_loader
-from frontiers_code import Dataset
-from frontiers_code import ImageTensorboard
-from frontiers_code import losses
-from frontiers_code.tools import log
+from joint_registration_tumor_segmentation import model_loader
+from joint_registration_tumor_segmentation import Dataset
+from joint_registration_tumor_segmentation import ImageTensorboard
+from joint_registration_tumor_segmentation import losses
+from joint_registration_tumor_segmentation.tools import log
 
 main_path = os.path.abspath(__file__)
 n = main_path.find('Python')
@@ -289,7 +289,7 @@ def main(args):
         save_callback = callbacks.ModelCheckpoint(model_path + 'model.{epoch:03d}--{val_loss:.3f}.h5',
                                                   save_weights_only=False, period=5)
         callbacks_list.append(save_callback)
-    
+
     if args.early_stopping:
         callbacks_list.append(callbacks.EarlyStopping(patience=args.patience, min_delta=.001))
     if args.lr_decrease:
@@ -307,12 +307,12 @@ def main(args):
 
     # Optimizer and compile scheme
     optim = optimizers.Adam(lr=args.lr)
-    
+
     #### Loss and metrics
 
     segmentation_metrics = losses.averaged_dice_loss
     segmentation_loss = 'categorical_crossentropy'
-    
+
     registration_map_construction_loss = losses.zero_loss  # no reg yet
     registration_map_construction_metrics = losses.mean_squared_error_with_zero
     registration_map_application_losstrick_loss = losses.mean_squared_error_with_zero  # output is masked(deformed(source)-target)
@@ -362,7 +362,7 @@ def main(args):
         loss_dict = {k: v for k, v in loss_dict.items() if k in keys}
         metrics_dict = {k: v for k, v in metrics_dict.items() if k in keys}
         loss_weights_dict = {k: v for k, v in loss_weights_dict.items() if k in keys}
-        model.compile(optimizer=optim, loss=loss_dict, metrics=metrics_dict, 
+        model.compile(optimizer=optim, loss=loss_dict, metrics=metrics_dict,
                       loss_weights=loss_weights_dict)
 
     # train and evaluate on both validation and test sets

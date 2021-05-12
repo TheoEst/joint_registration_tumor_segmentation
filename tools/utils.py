@@ -10,8 +10,8 @@ import SimpleITK as sitk
 import keras.models as models
 
 # My package
-from frontiers_brain.diffeomorphicTransformer import BuildRegistrationMap, diffeomorphicTransformer3D, DefReg
-from frontiers_brain.main import zero_loss, mean_squared_error_with_zero
+from joint_registration_tumor_segmentation.diffeomorphicTransformer import BuildRegistrationMap, diffeomorphicTransformer3D, DefReg
+from joint_registration_tumor_segmentation.main import zero_loss, mean_squared_error_with_zero
 
 
 def load_nifti(path):
@@ -67,7 +67,7 @@ def load_model_v2(model_path):
                       'BuildRegistrationMap': BuildRegistrationMap,
                       'diffeomorphicTransformer3D': diffeomorphicTransformer3D,
                       'zero_loss': zero_loss,
-                      'mean_squared_error_with_zero': mean_squared_error_with_zero, 
+                      'mean_squared_error_with_zero': mean_squared_error_with_zero,
                       'DefReg': DefReg
                       }
 

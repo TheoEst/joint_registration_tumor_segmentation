@@ -4,12 +4,11 @@ Created on Tue Oct 22 15:35:54 2019
 
 @author: T_ESTIENNE
 """
-import numpy as np
 from keras import backend as K
 import keras.models as models
 from keras.layers import Input, Conv3D, Deconvolution3D, add, Concatenate, subtract, Lambda, multiply, concatenate, minimum
 from keras.utils import plot_model
-from frontiers_code import diffeomorphicTransformer as Transformer
+from joint_registration_tumor_segmentation import diffeomorphicTransformer as Transformer
 
 
 def handwritten_vnet(input_shape, final_activation_name, n_output_channels, filter_width_normal_conv=5,

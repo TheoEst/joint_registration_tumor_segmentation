@@ -127,7 +127,7 @@ def main(args):
     else:
         brats_path = data_path + 'BRATS/numpy/'
     oasis_path = data_path + 'oasis/'
-    dataset_path = main_path + 'frontiers_code/datset/'
+    dataset_path = main_path + 'datset/'
 
     # logs some path info and arguments
     logger.info('save_path ' + save_path)

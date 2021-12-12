@@ -104,7 +104,7 @@ def step_decay(epoch, args):
     return lrate
 
 def main(args):
-    save_path = main_path + 'save/frontiers_brain/'
+    save_path = main_path + 'save/'
     session_name = args.session_name + '_' + time.strftime('%m.%d-%Hh%M')
 
     # Log

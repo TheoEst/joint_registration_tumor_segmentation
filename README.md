@@ -43,3 +43,6 @@ More details are given in the article.
 We don't provide the datasets in this repo.
 People can find the datasets on the following link : https://www.oasis-brains.org/ and https://www.med.upenn.edu/sbia/brats2018/data.html
 
+To run the code, you need to download both datasets. By default, the data is supposed to be in the folder 
+`joint_registration_tumor_segmentation\data\oasis\`  and 
+`joint_registration_tumor_segmentation\data\BRATS\`

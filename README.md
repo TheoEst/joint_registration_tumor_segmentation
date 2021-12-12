@@ -14,8 +14,9 @@ The most important arguments are :
     
 To train the proposed method, the commands line is :
 
+``` 
 python -m joint_registration_tumor_segmentation.main --only-t1 --session-name seg_reg_SubMerge_8channels_1.0ratio_0.002lr --epochs 180 --batch-size 2 --lr 2e-3 --nb-gpu 1 --only-brats --source-target-merge-operation subtraction --n-channels-first-layer 8 --ratio-weights-registration-over-segmentation 1.0 -deform-regularisation 1e-10
-
+``` 
 
 
 
@@ -28,7 +29,9 @@ The most important arguments are :
   
 To do the inference, the command line is : 
 
+``` 
 python -m joint_registration_tumor_segmentation.inference  --get-registration --data-folder-path path_to_data --model-abspath path_to_model --output-folder path_to_output
+``` 
 
 ## Data
 

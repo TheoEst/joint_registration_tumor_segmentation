@@ -29,3 +29,14 @@ The most important arguments are :
 To do the inference, the command line is : 
 
 python -m joint_registration_tumor_segmentation.inference  --get-registration --data-folder-path path_to_data --model-abspath path_to_model --output-folder path_to_output
+
+## Data
+
+In this article we use two datasets : **OASIS 3** and **BraTS 2018**.
+BraTS 2018 was used for training and testing both segmentation and registration. 
+OASIS 3 was used only for testing.
+More details are given in the article.
+
+We don't provide the datasets in this repo.
+People can find the datasets on the following link : https://www.oasis-brains.org/ and https://www.med.upenn.edu/sbia/brats2018/data.html
+

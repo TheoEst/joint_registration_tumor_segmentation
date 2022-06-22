@@ -207,11 +207,8 @@ class DataGenerator(keras.utils.Sequence):
                         'predicted_background_merged_mask': np.zeros(self.batch_size)}
 
     def validation_index(self):
-        if self.only_close_tumor:
-            self.indexes_moving = list(range(len(self.brats_IDs)))
-        else:
-            self.indexes_moving = list(range(len(self.brats_IDs)))
-            self.indexes_reference = list(range(1, len(self.brats_IDs))) + [0]
+        self.indexes_moving = list(range(len(self.brats_IDs)))
+        self.indexes_reference = list(range(1, len(self.brats_IDs))) + [0]
 
     def on_epoch_end(self):
         'Updates indexes after each epoch for training'
